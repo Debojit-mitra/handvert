@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* This allows you to toggle dark mode by adding the .dark class to the <html> tag */
+/* also add className="dark" to the <html> tag to enable dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* CSS variables for theme */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+
+  --color-textPrimary: var(--textPrimary);
+  --color-textPrimaryDark: var(--textPrimaryDark);
+  --color-textSecondary: var(--textSecondary);
+
+  --color-secondary: var(--secondary);
+
+  --color-buttonPrimary: var(--buttonPrimary);
+
+  /* Local Fonts */
+  --font-neue-machina: var(--font-neue-machina);
+
+  /* You can still use the default palette for other things */
+}
+
+@layer base {
+  /* Light Mode Variables (Default) */
+  :root {
+    --background: #fffdf7;
+    --foreground: #040914;
+    --primary: #6367ff;
+    --secondary: #666666;
+
+    --textPrimary: #1a1a1a;
+    --textPrimaryDark: #fffdf7;
+    --textSecondary: #7b7b7b;
+
+    --buttonPrimary: #0f0f0f;
+
+    /* fonts */
+    --font-neue-machina: var(--font-neue-machina);
+    --font-inter: var(--font-inter);
+
+    /* Set global defaults */
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Dark Mode Variables */
+  .dark {
+    --background: #040914;
+    --foreground: #fffdf7;
+    --primary: #8494ff;
+    --secondary: #cbcbcb;
+
+    --textPrimary: #fffdf7;
+    --textPrimaryDark: #1a1a1a;
+    --textSecondary: #666666;
+
+    --buttonPrimary: #f1f1f1;
+  }
+
+  body {
+    font-family: var(--font-inter);
+    /* font-family: "Courier New", Courier, monospace; */
+  }
+}
