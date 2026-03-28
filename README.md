@@ -1,5 +1,3 @@
-# Handvert
-
 <p align="center">
 <img src="https://i.ibb.co/3YMZ1TsR/Screenshot-From-2026-03-28-12-25-06-Photoroom.png" alt="Handvert" width="300" >
 </p>
