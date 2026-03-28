@@ -28,9 +28,15 @@ export default async function handler(
 
   const { type } = req.query; // 'image', 'office-to-pdf', 'pdf-to-docx'
 
+  const uploadDir = path.join(process.cwd(), 'uploads');
+  if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+  }
+
   const form = formidable({
-    keepExtensions: true,
-    maxFileSize: 200 * 1024 * 1024, // 200mb
+      keepExtensions: true,
+      maxFileSize: 200 * 1024 * 1024, // 200mb
+      uploadDir: uploadDir,
   });
 
   try {
@@ -153,8 +159,9 @@ async function handleOfficeToPdf(
 }
 
 async function handlePdfToDocx(res: NextApiResponse, inputPath: string) {
-  const outputFilename = `converted-${Date.now()}.docx`;
-  const outputPath = path.join(os.tmpdir(), outputFilename);
+    const outputFilename = `converted-${Date.now()}.docx`;
+    const uploadDir = path.join(process.cwd(), 'uploads');
+    const outputPath = path.join(uploadDir, outputFilename);
 
   // Call Python script via child process
   const pyScriptPath = [process.cwd(), "src", "utils", "convert_pdf.py"].join(

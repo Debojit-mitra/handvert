@@ -198,6 +198,29 @@ export default function Home() {
               onOriginalSizeCalculated={setOriginalSize}
             />
 
+            {/* Privacy Guarantee Block */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="mt-6 flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-[20px]"
+            >
+              <Icon
+                icon="mdi:shield-lock-outline"
+                className="w-6 h-6 text-emerald-400 shrink-0 mt-0.5 flex items-center"
+              />
+              <div className="text-left text-sm text-emerald-100/80 leading-relaxed">
+                <span className="font-semibold text-emerald-300 block mb-0.5">
+                  Absolute Privacy Guarantee
+                </span>
+                Files are{" "}
+                <strong className="text-emerald-100 font-bold">
+                  automatically deleted instantly
+                </strong>{" "}
+                upon conversion completion.
+              </div>
+            </motion.div>
+
             {/* Action Area */}
             <div className="mt-6">
               <button
