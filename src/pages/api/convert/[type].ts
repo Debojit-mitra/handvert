@@ -96,14 +96,16 @@ async function handleImageConvert(
   const maintainAspectRatio = fields.maintainAspectRatio?.[0] !== "false";
 
   if (dimensionType === "%" && (width || height)) {
-    const metadata = await sharp(inputPath).metadata();
+    // .rotate() ensures metadata reflects visually-correct (EXIF-applied) dimensions
+    const metadata = await sharp(inputPath).rotate().metadata();
     if (width && metadata.width)
       width = Math.round((width / 100) * metadata.width);
     if (height && metadata.height)
       height = Math.round((height / 100) * metadata.height);
   }
 
-  let processor = sharp(inputPath).toFormat(format, { quality });
+  // .rotate() with no args auto-applies EXIF orientation (fixes Samsung/iPhone rotated photos)
+  let processor = sharp(inputPath).rotate().toFormat(format, { quality });
 
   if (width || height) {
     processor = processor.resize({
